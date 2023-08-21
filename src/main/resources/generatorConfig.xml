@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="db.properties"/>
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <plugin type="top.sumhzehn.mybatisutil.common.MapperPlugin">
+            <property name="mappers" value="top.sumhzehn.mybatisutil.mapper.MyMapper"/>
+        </plugin>
+
+        <jdbcConnection driverClass="${jdbc.driverClass}"
+                        connectionURL="${jdbc.url}"
+                        userId="${jdbc.user}"
+                        password="${jdbc.password}">
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+        <!--Java实体类目录-->
+        <javaModelGenerator targetPackage="top.sumhzehn.xxx.model.xx" targetProject="D:/TempMapper"/>
+        <!--Mapper类目录-->
+        <sqlMapGenerator targetPackage="resources.mapper.progress"  targetProject="D:/TempMapper"/>
+        <!--Mapper配置文件目录-->
+        <javaClientGenerator targetPackage="top.sumhzehn.xxx.mapper.xx" targetProject="D:/TempMapper" type="XMLMAPPER" />
+        <!--扫描数据库表-->
+        <table tableName="HISTORY_RECORD">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
+    </context>
+</generatorConfiguration>
